@@ -12,7 +12,7 @@ import (
 	"github.com/zenazn/goji/graceful"
 )
 
-func init() {
+func initOnDemand() {
 	bind.WithFlag()
 	if fl := log.Flags(); fl&log.Ltime != 0 {
 		log.SetFlags(fl | log.Lmicroseconds)
@@ -22,6 +22,9 @@ func init() {
 
 // Serve starts Goji using reasonable defaults.
 func Serve() {
+
+    initOnDemand()
+
 	if !flag.Parsed() {
 		flag.Parse()
 	}
